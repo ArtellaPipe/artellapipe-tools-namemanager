@@ -13,7 +13,7 @@ sentry_sdk.init("https://d50e6953c45b44609a9e88d3bc3064d8@sentry.io/1764141")
 
 from tpPyUtils import importer
 
-from artellapipe.utils import exceptions
+from artellapipe.utils import resource, exceptions
 
 
 class NameManager(importer.Importer, object):
@@ -55,7 +55,10 @@ def init(do_reload=False):
 
     create_logger_directory()
 
+    resources_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'resources')
+    resource.ResourceManager.instance().register_resource(resources_path)
 
+    
 @exceptions.sentry_exception
 def run(project, do_reload=False):
     """
