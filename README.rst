@@ -1,4 +1,4 @@
-artellapipe-tools-assetslibrary
+artellapipe-tools-namemanager
 ============================================================
 
-Tool to load assets into DCC scenes
+Tool to manage nomenclature rules for DCC nodes and pipeline files and folders

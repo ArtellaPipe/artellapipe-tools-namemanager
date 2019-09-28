@@ -2,5 +2,5 @@
 # artellapipe-tools-namemanager requirements file
 # ===================================================================
 
-lucidity
+tpNameIt
 artellapipe-core
