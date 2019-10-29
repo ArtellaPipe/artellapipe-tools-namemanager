@@ -1,6 +1,6 @@
 # ===================================================================
-# artellapipe-tools-namemanager requirements file
+# artellapipe-tools-assetsmanager namemanager file
 # ===================================================================
-
+lucidity
+artellapipe
 tpNameIt
-artellapipe-core

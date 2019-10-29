@@ -12,19 +12,21 @@ __license__ = "MIT"
 __maintainer__ = "Tomas Poveda"
 __email__ = "tpovedatd@gmail.com"
 
+import logging
 import traceback
 
 from Qt.QtCore import *
 from Qt.QtWidgets import *
 
-from tpQtLib.widgets import splitters
+import lucidity
 
-import artellapipe
-from artellapipe.gui import window
+from tpQtLib.widgets import splitters
 
 from tpNameIt.core import nameit
 
-import lucidity
+from artellapipe.core import tool
+
+LOGGER = logging.getLogger()
 
 
 class ArtellaNamingData(nameit.NamingData, object):
@@ -68,8 +70,8 @@ class ArtellaNamingData(nameit.NamingData, object):
                     templates_list.append(Template(template['name'], template['pattern']))
                 return templates_list
             except Exception as e:
-                artellapipe.logger.warning('Impossible to load templates fron naming data file: {}'.format(data_file))
-                artellapipe.logger.error('{} | {}'.format(e, traceback.format_exc()))
+                LOGGER.warning('Impossible to load templates fron naming data file: {}'.format(data_file))
+                LOGGER.error('{} | {}'.format(e, traceback.format_exc()))
 
         return None
 
@@ -166,7 +168,7 @@ class Template(object):
             temp = lucidity.Template(self.name, self.pattern)
             return temp.parse(path_to_parse)
         except Exception:
-            artellapipe.logger.warning('Given Path: {} does not match template pattern: {} | {}!'.format(path_to_parse, self.name, self.pattern))
+            LOGGER.warning('Given Path: {} does not match template pattern: {} | {}!'.format(path_to_parse, self.name, self.pattern))
             return None
 
     def format(self, template_data):
@@ -186,11 +188,11 @@ class NameWidget(nameit.NameIt, object):
         'nameit':
             {
                 'rules':
-                    [],
+                    list(),
                 'tokens':
-                    [],
+                    list(),
                 'templates':
-                    []
+                    list()
             }
     }
     NAMING_DATA = ArtellaNamingData
@@ -280,7 +282,7 @@ class NameWidget(nameit.NameIt, object):
                     self.on_add_template(template)
             return True
         except Exception as e:
-            artellapipe.logger.error('Error while loading templates from: {} | {} | {}'.format(self.DATA_FILE, e, traceback.format_exc()))
+            LOGGER.error('Error while loading templates from: {} | {} | {}'.format(self.DATA_FILE, e, traceback.format_exc()))
 
         return False
 
@@ -423,18 +425,9 @@ class NameWidget(nameit.NameIt, object):
         pass
 
 
-class NameManager(window.ArtellaWindow, object):
-
-    VERSION = '0.0.1'
-    LOGO_NAME = 'namemanager_logo'
-
-    def __init__(self, project):
-        super(NameManager, self).__init__(
-            project=project,
-            name='NameManagerWindow',
-            title='Name Manager',
-            size=(600, 900)
-        )
+class NameManager(tool.Tool, object):
+    def __init__(self, project, config):
+        super(NameManager, self).__init__(project=project, config=config)
 
     def ui(self):
         super(NameManager, self).ui()
@@ -507,10 +500,3 @@ class NameManager(window.ArtellaWindow, object):
                 return template.format(template_tokens)
 
         return None
-
-
-def run(project):
-    win = NameManager(project=project)
-    win.show()
-
-    return win
