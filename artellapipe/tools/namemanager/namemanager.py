@@ -168,7 +168,9 @@ class Template(object):
             temp = lucidity.Template(self.name, self.pattern)
             return temp.parse(path_to_parse)
         except Exception:
-            LOGGER.warning('Given Path: {} does not match template pattern: {} | {}!'.format(path_to_parse, self.name, self.pattern))
+            LOGGER.warning(
+                'Given Path: {} does not match template pattern: {} | {}!'.format(
+                    path_to_parse, self.name, self.pattern))
             return None
 
     def format(self, template_data):
@@ -251,10 +253,10 @@ class NameWidget(nameit.NameIt, object):
         self.tabs.addTab(templates_tab, 'Templates')
         templates_tab.setLayout(templates_main_layout)
         self.group_layout.addWidget(self.templates_widget)
-        
+
     def setup_signals(self):
         super(NameWidget, self).setup_signals()
-        
+
         self.add_template_btn.clicked.connect(self.on_add_template)
         self.remove_template_btn.clicked.connect(self.on_remove_template)
         self.templates_list.currentItemChanged.connect(self.on_change_template)
@@ -282,7 +284,8 @@ class NameWidget(nameit.NameIt, object):
                     self.on_add_template(template)
             return True
         except Exception as e:
-            LOGGER.error('Error while loading templates from: {} | {} | {}'.format(self.DATA_FILE, e, traceback.format_exc()))
+            LOGGER.error(
+                'Error while loading templates from: {} | {} | {}'.format(self.DATA_FILE, e, traceback.format_exc()))
 
         return False
 
@@ -310,7 +313,8 @@ class NameWidget(nameit.NameIt, object):
             row += 1
 
         self.template_tokens_layout.addWidget(QLabel(template_token_name), row, 0)
-        self.template_tokens_layout.addWidget(QLabel(template_token_data.get('description', '') if template_token_data else '< NOT FOUND >'), row, 1)
+        self.template_tokens_layout.addWidget(
+            QLabel(template_token_data.get('description', '') if template_token_data else '< NOT FOUND >'), row, 1)
 
     def _update_template_tokens(self, template):
         """
@@ -375,7 +379,7 @@ class NameWidget(nameit.NameIt, object):
 
             if not load_template:
                 self.templates_list.setCurrentItem(item)
-    
+
     def on_remove_template(self):
         """
         Removes the selected template from the list of templates
