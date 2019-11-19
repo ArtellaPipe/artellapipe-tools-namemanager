@@ -16,7 +16,7 @@ import logging
 
 from tpNameIt.core import nameit
 
-from artellapipe.core import tool
+import artellapipe
 from artellapipe.libs import naming
 from artellapipe.libs.naming.core import naminglib
 
@@ -32,7 +32,7 @@ class NameWidget(nameit.NameIt, object):
         super(NameWidget, self).__init__(data_file=naming.config.get_path(), parent=parent)
 
 
-class NameManager(tool.Tool, object):
+class NameManager(artellapipe.Tool, object):
     def __init__(self, project, config):
         super(NameManager, self).__init__(project=project, config=config)
 
