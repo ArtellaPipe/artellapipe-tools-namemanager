@@ -42,9 +42,9 @@ class NameManager(artellapipe.Tool, object):
         self._name_widget = NameWidget(project=self._project)
         self.main_layout.addWidget(self._name_widget)
 
-    def close_tool_attacher(self):
-        self._name_widget.NAMING_LIB().save_session()
-        super(NameManager, self).close_tool_attacher()
+    # def close_tool_attacher(self):
+    #     self._name_widget.NAMING_LIB().save_session()
+    #     super(NameManager, self).close_tool_attacher()
 
     @property
     def nameit(self):
