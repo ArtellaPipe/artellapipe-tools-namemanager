@@ -14,7 +14,7 @@ __email__ = "tpovedatd@gmail.com"
 
 import logging
 
-from tpNameIt.core import nameit
+from tpDcc.tools.nameit.widgets import nameit
 
 import artellapipe
 from artellapipe.libs import naming
@@ -32,9 +32,9 @@ class NameWidget(nameit.NameIt, object):
         super(NameWidget, self).__init__(data_file=naming.config.get_path(), parent=parent)
 
 
-class NameManager(artellapipe.Tool, object):
-    def __init__(self, project, config):
-        super(NameManager, self).__init__(project=project, config=config)
+class NameManager(artellapipe.ToolWidget, object):
+    def __init__(self, project, config, settings, parent):
+        super(NameManager, self).__init__(project=project, config=config, settings=settings, parent=parent)
 
     def ui(self):
         super(NameManager, self).ui()
