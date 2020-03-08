@@ -1,7 +1,0 @@
-artellapipe.tools.namemanager.namemanager module
-================================================
-
-.. automodule:: artellapipe.tools.namemanager.namemanager
-   :members:
-   :undoc-members:
-   :show-inheritance:

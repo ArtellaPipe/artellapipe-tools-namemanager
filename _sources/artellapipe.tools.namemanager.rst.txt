@@ -1,12 +1,13 @@
 artellapipe.tools.namemanager package
 =====================================
 
-Submodules
-----------
+Subpackages
+-----------
 
 .. toctree::
 
-   artellapipe.tools.namemanager.namemanager
+   artellapipe.tools.namemanager.core
+   artellapipe.tools.namemanager.widgets
 
 Module contents
 ---------------

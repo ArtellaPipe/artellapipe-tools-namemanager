@@ -1,0 +1,17 @@
+artellapipe.tools.namemanager.core package
+==========================================
+
+Submodules
+----------
+
+.. toctree::
+
+   artellapipe.tools.namemanager.core.namemanager
+
+Module contents
+---------------
+
+.. automodule:: artellapipe.tools.namemanager.core
+   :members:
+   :undoc-members:
+   :show-inheritance:

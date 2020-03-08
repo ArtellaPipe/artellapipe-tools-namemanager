@@ -1,0 +1,17 @@
+artellapipe.tools.namemanager.widgets package
+=============================================
+
+Submodules
+----------
+
+.. toctree::
+
+   artellapipe.tools.namemanager.widgets.namemanager
+
+Module contents
+---------------
+
+.. automodule:: artellapipe.tools.namemanager.widgets
+   :members:
+   :undoc-members:
+   :show-inheritance:
