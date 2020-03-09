@@ -12,15 +12,11 @@ __license__ = "MIT"
 __maintainer__ = "Tomas Poveda"
 __email__ = "tpovedatd@gmail.com"
 
-import logging
-
 from tpDcc.tools.nameit.widgets import nameit
 
 import artellapipe
 from artellapipe.libs import naming
 from artellapipe.libs.naming.core import naminglib
-
-LOGGER = logging.getLogger()
 
 
 class NameWidget(nameit.NameIt, object):
@@ -30,6 +26,32 @@ class NameWidget(nameit.NameIt, object):
     def __init__(self, project, parent=None):
         self._project = project
         super(NameWidget, self).__init__(data_file=naming.config.get_path(), parent=parent)
+
+    def _on_open_renamer_tool(self):
+        """
+        Overrides nameit.NameIt _on_open_renamer_tool
+        Internal function that is used by toolbar to open Renamer Tool
+        """
+
+        try:
+            artellapipe.ToolsMgr().run_tool('artellapipe-tools-renamer', do_reload=False)
+        except Exception:
+            artellapipe.logger.warning('tpDcc-tools-renamer is not available!')
+            return None
+
+    def _is_renamer_tool_available(self):
+        """
+        Overrides nameit.NameIt _is_renamer_tool_available
+        Returns whether or not tpRenamer tool is available or not
+        :return: bool
+        """
+
+        try:
+            import artellapipe.tools.renamer
+        except Exception:
+            return False
+
+        return True
 
 
 class NameManager(artellapipe.ToolWidget, object):
@@ -41,10 +63,6 @@ class NameManager(artellapipe.ToolWidget, object):
 
         self._name_widget = NameWidget(project=self._project)
         self.main_layout.addWidget(self._name_widget)
-
-    # def close_tool_attacher(self):
-    #     self._name_widget.NAMING_LIB().save_session()
-    #     super(NameManager, self).close_tool_attacher()
 
     @property
     def nameit(self):
