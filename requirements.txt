@@ -3,4 +3,5 @@
 # ===================================================================
 lucidity
 artellapipe
-tpNameIt
+tpDcc-libs-nameit
+tpDcc-tools-nameit
