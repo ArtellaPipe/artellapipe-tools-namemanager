@@ -1,5 +1,5 @@
 # ===================================================================
-# artellapipe-tools-assetsmanager namemanager file
+# artellapipe-tools-namemanager file
 # ===================================================================
 lucidity
 artellapipe
