@@ -12,11 +12,16 @@ __license__ = "MIT"
 __maintainer__ = "Tomas Poveda"
 __email__ = "tpovedatd@gmail.com"
 
+import logging
+
 from tpDcc.tools.nameit.widgets import nameit
 
 import artellapipe
+from artellapipe.core import tool
 from artellapipe.libs import naming
 from artellapipe.libs.naming.core import naminglib
+
+LOGGER = logging.getLogger('artellapipe-tools-namemanager')
 
 
 class NameWidget(nameit.NameIt, object):
@@ -36,7 +41,7 @@ class NameWidget(nameit.NameIt, object):
         try:
             artellapipe.ToolsMgr().run_tool('artellapipe-tools-renamer', do_reload=False)
         except Exception:
-            artellapipe.logger.warning('tpDcc-tools-renamer is not available!')
+            LOGGER.warning('tpDcc-tools-renamer is not available!')
             return None
 
     def _is_renamer_tool_available(self):
@@ -54,7 +59,7 @@ class NameWidget(nameit.NameIt, object):
         return True
 
 
-class NameManager(artellapipe.ToolWidget, object):
+class NameManager(tool.ArtellaToolWidget, object):
     def __init__(self, project, config, settings, parent):
         super(NameManager, self).__init__(project=project, config=config, settings=settings, parent=parent)
 

@@ -12,22 +12,19 @@ __license__ = "MIT"
 __maintainer__ = "Tomas Poveda"
 __email__ = "tpovedatd@gmail.com"
 
-import artellapipe
+from artellapipe.core import tool
 
 # Defines ID of the tool
 TOOL_ID = 'artellapipe-tools-namemanager'
 
-# We skip the reloading of this module when launching the tool
-no_reload = True
 
-
-class NameManagerTool(artellapipe.Tool, object):
+class NameManagerTool(tool.ArtellaTool, object):
     def __init__(self, *args, **kwargs):
         super(NameManagerTool, self).__init__(*args, **kwargs)
 
     @classmethod
     def config_dict(cls, file_name=None):
-        base_tool_config = artellapipe.Tool.config_dict(file_name=file_name)
+        base_tool_config = tool.ArtellaTool.config_dict(file_name=file_name)
         tool_config = {
             'name': 'Name Manager',
             'id': 'artellapipe-tools-namemanager',
@@ -52,7 +49,7 @@ class NameManagerTool(artellapipe.Tool, object):
         return base_tool_config
 
 
-class NameManagerToolset(artellapipe.Toolset, object):
+class NameManagerToolset(tool.ArtellaToolset, object):
     ID = TOOL_ID
 
     def __init__(self, *args, **kwargs):
