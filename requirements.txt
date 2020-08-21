@@ -1,7 +1,6 @@
 # ===================================================================
 # artellapipe-tools-namemanager file
 # ===================================================================
-lucidity
 artellapipe
 tpDcc-libs-nameit
 tpDcc-tools-nameit
