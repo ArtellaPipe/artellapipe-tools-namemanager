@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Version module for artellapipe-tools-artellamanager
+Version module for artellapipe-tools-namemanager
 """
 
 from __future__ import print_function, division, absolute_import
