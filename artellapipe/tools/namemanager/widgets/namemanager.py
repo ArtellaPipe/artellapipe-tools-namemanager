@@ -18,19 +18,16 @@ from tpDcc.tools.nameit.widgets import nameit
 
 import artellapipe
 from artellapipe.core import tool
-from artellapipe.libs import naming
-from artellapipe.libs.naming.core import naminglib
 
 LOGGER = logging.getLogger('artellapipe-tools-namemanager')
 
 
 class NameWidget(nameit.NameIt, object):
 
-    NAMING_LIB = naminglib.ArtellaNameLib
-
-    def __init__(self, project, parent=None):
+    def __init__(self, naming_lib, project, parent=None):
         self._project = project
-        super(NameWidget, self).__init__(data_file=naming.config.get_path(), parent=parent)
+        # super(NameWidget, self).__init__(naming_lib=naming_lib, data_file=naming.config.get_path(), parent=parent)
+        super(NameWidget, self).__init__(naming_lib=naming_lib, parent=parent)
 
     def _on_open_renamer_tool(self):
         """
@@ -66,7 +63,7 @@ class NameManager(tool.ArtellaToolWidget, object):
     def ui(self):
         super(NameManager, self).ui()
 
-        self._name_widget = NameWidget(project=self._project)
+        self._name_widget = NameWidget(naming_lib=artellapipe.NamesMgr().naming_lib, project=self._project)
         self.main_layout.addWidget(self._name_widget)
 
     @property
